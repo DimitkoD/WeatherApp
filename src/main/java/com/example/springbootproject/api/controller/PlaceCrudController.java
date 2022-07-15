@@ -42,8 +42,8 @@ public class PlaceCrudController {
     }
 
     @PutMapping("/updatePlace")
-    public void updatePlace(@RequestBody UpdateRequest updateRequest) throws NoSuchPlaceException{
-        updateService.updatePlace(updateRequest);
+    public void updatePlace(@RequestParam Long id, @RequestBody UpdateRequest updateRequest) throws NoSuchPlaceException{
+        updateService.updatePlace(id, updateRequest);
     }
 
 }

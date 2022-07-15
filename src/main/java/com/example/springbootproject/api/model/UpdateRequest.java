@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateRequest {
-    private Long id;
     private String placeName;
     private String countryName;
     private String type;

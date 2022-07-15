@@ -26,9 +26,9 @@ public class UpdateServiceImpl implements UpdateService {
         System.out.println("UpdatePlace impl has been created");
     }
     @Override
-    public void updatePlace(UpdateRequest updateRequest) throws NoSuchPlaceException {
+    public void updatePlace(Long id, UpdateRequest updateRequest) throws NoSuchPlaceException {
 
-        Optional<Place> placeOpt = placeRepository.findById(updateRequest.getId());
+        Optional<Place> placeOpt = placeRepository.findById(id);
         Type type = typeRepository.findByName(updateRequest.getType());
         Country country = countryRepository.findByName(updateRequest.getCountryName());
 
