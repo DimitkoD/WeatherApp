@@ -13,11 +13,9 @@ import java.util.Optional;
 @Service
 public class GetPlaceServiceImpl implements GetPlaceService {
     private final PlaceRepository placeRepository;
-    private final GetResponseTemplateProvider getResponse;
 
-    public GetPlaceServiceImpl(PlaceRepository placeRepository, GetResponseTemplateProvider getResponse) {
+    public GetPlaceServiceImpl(PlaceRepository placeRepository) {
         this.placeRepository = placeRepository;
-        this.getResponse = getResponse;
     }
 
     public GetResponse getResponse(Long id) throws NoSuchPlaceException {
@@ -28,13 +26,12 @@ public class GetPlaceServiceImpl implements GetPlaceService {
         }
         PlaceEntity placeEntity = placeOpt.get();
 
-        GetResponse response = getResponse.getResponse();
-        response.setCountryName(placeEntity.getCountry().getName());
-        response.setPlaceName(placeEntity.getName());
-        response.setType(placeEntity.getType().getName());
-        response.setLatitude(placeEntity.getLatitude());
-        response.setLongitude(placeEntity.getLongitude());
-
-        return response;
+        return GetResponse.builder().
+                countryName(placeEntity.getCountry().getName()).
+                placeName(placeEntity.getName()).
+                type(placeEntity.getType().getName()).
+                latitude(placeEntity.getLatitude()).
+                longitude(placeEntity.getLongitude()).
+                build();
     }
 }
