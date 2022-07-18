@@ -1,7 +1,7 @@
 package com.example.springbootproject.domain.service.implementation;
 
 import com.example.springbootproject.api.model.WeatherResponse;
-import com.example.springbootproject.data.db.entity.Place;
+import com.example.springbootproject.data.db.entity.PlaceEntity;
 import com.example.springbootproject.data.db.repository.PlaceRepository;
 import com.example.springbootproject.data.external.model.WeatherApiResponse;
 import com.example.springbootproject.data.exception.LocationNotFoundException;
@@ -24,12 +24,12 @@ public class WeatherServiceImpl implements WeatherService {
 
     //@RequestMapping("/weather")
     public WeatherResponse getWeatherResponse(String placeName, String countryName) throws LocationNotFoundException {
-        Place place = placeRepository.findByNameAndCountryName(placeName, countryName);
-        if(place == null) {
+        PlaceEntity placeEntity = placeRepository.findByNameAndCountryName(placeName, countryName);
+        if(placeEntity == null) {
             throw new LocationNotFoundException();
         }
         String url = "http://api.weatherapi.com/v1/current.json?key=b293c88263e5412089290227220807&q="
-                + place.getLatitude() + "," + place.getLongitude() + "&aqi=no";
+                + placeEntity.getLatitude() + "," + placeEntity.getLongitude() + "&aqi=no";
 
         WeatherApiResponse weather = restTemplateProvider.
                 getRestTemplate().getForObject(url, WeatherApiResponse.class);
@@ -38,9 +38,9 @@ public class WeatherServiceImpl implements WeatherService {
                 temperature(weather.current.temp_c).
                 sky(weather.current.condition.getText()).
                 humidity(weather.current.humidity).
-                place(place.getName()).
-                country(place.getCountry().getName()).
-                type(place.getType().getName()).
+                place(placeEntity.getName()).
+                country(placeEntity.getCountry().getName()).
+                type(placeEntity.getType().getName()).
                 build();
     }
 }

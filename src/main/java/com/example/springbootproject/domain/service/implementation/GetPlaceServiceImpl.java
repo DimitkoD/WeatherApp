@@ -1,6 +1,6 @@
 package com.example.springbootproject.domain.service.implementation;
 
-import com.example.springbootproject.data.db.entity.Place;
+import com.example.springbootproject.data.db.entity.PlaceEntity;
 import com.example.springbootproject.data.db.repository.PlaceRepository;
 import com.example.springbootproject.data.exception.NoSuchPlaceException;
 import com.example.springbootproject.domain.service.GetResponseTemplateProvider;
@@ -21,19 +21,19 @@ public class GetPlaceServiceImpl implements GetPlaceService {
     }
 
     public GetResponse getResponse(Long id) throws NoSuchPlaceException {
-        Optional<Place> placeOpt = placeRepository.findById(id);
+        Optional<PlaceEntity> placeOpt = placeRepository.findById(id);
 
         if(placeOpt.isEmpty()) {
             throw new NoSuchPlaceException();
         }
-        Place place = placeOpt.get();
+        PlaceEntity placeEntity = placeOpt.get();
 
         GetResponse response = getResponse.getResponse();
-        response.setCountryName(place.getCountry().getName());
-        response.setPlaceName(place.getName());
-        response.setType(place.getType().getName());
-        response.setLatitude(place.getLatitude());
-        response.setLongitude(place.getLongitude());
+        response.setCountryName(placeEntity.getCountry().getName());
+        response.setPlaceName(placeEntity.getName());
+        response.setType(placeEntity.getType().getName());
+        response.setLatitude(placeEntity.getLatitude());
+        response.setLongitude(placeEntity.getLongitude());
 
         return response;
     }

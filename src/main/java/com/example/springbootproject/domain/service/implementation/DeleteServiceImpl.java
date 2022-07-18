@@ -1,6 +1,6 @@
 package com.example.springbootproject.domain.service.implementation;
 
-import com.example.springbootproject.data.db.entity.Place;
+import com.example.springbootproject.data.db.entity.PlaceEntity;
 import com.example.springbootproject.data.db.repository.PlaceRepository;
 import com.example.springbootproject.data.exception.NoSuchPlaceException;
 import com.example.springbootproject.domain.service.DeleteService;
@@ -19,7 +19,7 @@ public class DeleteServiceImpl implements DeleteService {
 
     @Override
     public void deletePlace(Long id) throws NoSuchPlaceException {
-        Optional<Place> place = placeRepository.findById(id);
+        Optional<PlaceEntity> place = placeRepository.findById(id);
         if(place.isEmpty()){
             throw new NoSuchPlaceException();
         }

@@ -2,7 +2,7 @@ package com.example.springbootproject.domain.service.implementation;
 
 import com.example.springbootproject.api.model.UpdateRequest;
 import com.example.springbootproject.data.db.entity.Country;
-import com.example.springbootproject.data.db.entity.Place;
+import com.example.springbootproject.data.db.entity.PlaceEntity;
 import com.example.springbootproject.data.db.entity.Type;
 import com.example.springbootproject.data.db.repository.CountryRepository;
 import com.example.springbootproject.data.db.repository.PlaceRepository;
@@ -28,7 +28,7 @@ public class UpdateServiceImpl implements UpdateService {
     @Override
     public void updatePlace(Long id, UpdateRequest updateRequest) throws NoSuchPlaceException {
 
-        Optional<Place> placeOpt = placeRepository.findById(id);
+        Optional<PlaceEntity> placeOpt = placeRepository.findById(id);
         Type type = typeRepository.findByName(updateRequest.getType());
         Country country = countryRepository.findByName(updateRequest.getCountryName());
 
@@ -38,7 +38,7 @@ public class UpdateServiceImpl implements UpdateService {
             throw new NoSuchPlaceException();
         }
 
-        Place place = placeOpt.get();
+        PlaceEntity placeEntity = placeOpt.get();
         if(type == null) {
             type = new Type();
             type.setName(updateRequest.getType());
@@ -51,13 +51,13 @@ public class UpdateServiceImpl implements UpdateService {
             countryRepository.save(country);
         }
 
-        place.setName(updateRequest.getPlaceName());
-        place.setTypeId(type.getId());
-        place.setCountryId(country.getId());
-        place.setLatitude(updateRequest.getLatitude());
-        place.setLongitude(updateRequest.getLongitude());
+        placeEntity.setName(updateRequest.getPlaceName());
+        placeEntity.setTypeId(type.getId());
+        placeEntity.setCountryId(country.getId());
+        placeEntity.setLatitude(updateRequest.getLatitude());
+        placeEntity.setLongitude(updateRequest.getLongitude());
 
-        placeRepository.save(place);
+        placeRepository.save(placeEntity);
 
     }
 }

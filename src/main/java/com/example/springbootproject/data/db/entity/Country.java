@@ -15,5 +15,5 @@ public class Country {
     private String name;
 
     @OneToMany(mappedBy = "country")
-    private Set<Place> places;
+    private Set<PlaceEntity> placeEntities;
 }

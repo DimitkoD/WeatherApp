@@ -2,12 +2,13 @@ package com.example.springbootproject.data.db.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
-public class Place {
+public class PlaceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

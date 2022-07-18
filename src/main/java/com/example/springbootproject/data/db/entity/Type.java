@@ -15,5 +15,5 @@ public class Type {
     private String name;
 
     @OneToMany(mappedBy = "type")
-    private Set<Place> places;
+    private Set<PlaceEntity> placeEntities;
 }

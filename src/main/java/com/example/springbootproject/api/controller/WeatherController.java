@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class WeatherController {
-    WeatherService weatherService;
+    private final WeatherService weatherService;
 
     public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
