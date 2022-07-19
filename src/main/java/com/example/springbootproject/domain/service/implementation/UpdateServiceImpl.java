@@ -31,7 +31,7 @@ public class UpdateServiceImpl implements UpdateService {
         Optional<PlaceEntity> placeOpt = placeRepository.findById(id);
         Type type = typeRepository.findByName(updateRequest.getType());
         Country country = countryRepository.findByName(updateRequest.getCountryName());
-        
+
         if(placeOpt.isEmpty()) {
             throw new NoSuchPlaceException();
         }

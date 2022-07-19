@@ -49,10 +49,10 @@ public class WeatherServiceImpl implements WeatherService {
                     if(isFahrenheit != null && isFahrenheit.equals("true")) {
                         x.setTemperature((x.getTemperature() * 9/5) + 32);
                     }
-                }).
-                toList().
-                stream().
-                findFirst().
-                orElseThrow();
+                })
+                .toList()
+                .stream()
+                .findFirst()
+                .orElseThrow();
     }
 }
