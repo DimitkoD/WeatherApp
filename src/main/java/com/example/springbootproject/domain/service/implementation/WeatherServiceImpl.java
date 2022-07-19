@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 public class WeatherServiceImpl implements WeatherService {
     public final RestTemplateProvider restTemplateProvider;
     public final PlaceRepository placeRepository;
-    
+
     public WeatherServiceImpl(RestTemplateProvider restTemplateProvider, PlaceRepository placeRepository) {
         this.restTemplateProvider = restTemplateProvider;
         this.placeRepository = placeRepository;
