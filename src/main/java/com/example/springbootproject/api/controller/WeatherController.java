@@ -3,6 +3,8 @@ package com.example.springbootproject.api.controller;
 
 import com.example.springbootproject.api.model.WeatherRequest;
 import com.example.springbootproject.domain.service.WeatherService;
+import lombok.NonNull;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,10 +18,12 @@ public class WeatherController {
 
     @PostMapping("/weather")
     public String showWeatherResponse(@RequestBody WeatherRequest weatherRequest) {
+        System.out.println(weatherRequest.toString());
         String placeName = weatherRequest.getPlaceName();
         String countryName = weatherRequest.getCountryName();
+        String isFahrenheit = weatherRequest.getIsFahrenheit();
 
-        return weatherService.getWeatherResponse(placeName, countryName).toString();
+        return weatherService.getWeatherResponse(placeName, countryName, isFahrenheit).toString();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.springbootproject.domain.model;
+package com.example.springbootproject.api.model;
 
 import lombok.*;
 

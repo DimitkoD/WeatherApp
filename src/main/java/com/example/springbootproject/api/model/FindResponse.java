@@ -1,6 +1,5 @@
 package com.example.springbootproject.api.model;
 
-import com.example.springbootproject.domain.model.Place;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

@@ -3,7 +3,7 @@ package com.example.springbootproject.api.model;
 import lombok.*;
 
 @Getter
-@Setter(AccessLevel.PRIVATE)
+@Setter
 @Builder
 @ToString
 public class WeatherResponse {
