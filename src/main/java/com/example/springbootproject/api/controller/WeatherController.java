@@ -2,6 +2,7 @@ package com.example.springbootproject.api.controller;
 
 
 import com.example.springbootproject.api.model.WeatherRequest;
+import com.example.springbootproject.api.model.WeatherResponse;
 import com.example.springbootproject.domain.service.WeatherService;
 import lombok.NonNull;
 import org.springframework.validation.annotation.Validated;
@@ -17,13 +18,14 @@ public class WeatherController {
     }
 
     @PostMapping("/weather")
-    public String showWeatherResponse(@RequestBody WeatherRequest weatherRequest) {
+    //in order to work with the client it should return WeatherResponse
+    public WeatherResponse showWeatherResponse(@RequestBody WeatherRequest weatherRequest) {
         System.out.println(weatherRequest.toString());
         String placeName = weatherRequest.getPlaceName();
         String countryName = weatherRequest.getCountryName();
         String isFahrenheit = weatherRequest.getIsFahrenheit();
 
-        return weatherService.getWeatherResponse(placeName, countryName, isFahrenheit).toString();
+        return weatherService.getWeatherResponse(placeName, countryName, isFahrenheit);
     }
 
 }
