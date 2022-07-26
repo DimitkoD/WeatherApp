@@ -25,7 +25,7 @@ public class WeatherServiceImpl implements WeatherService {
         System.out.println("Weather impl has been created");
     }
 
-    public WeatherResponse getWeatherResponse(String placeName, String countryName, String isFahrenheit) throws LocationNotFoundException {
+    public WeatherResponse getWeatherResponse(String placeName, String countryName, boolean isFahrenheit) throws LocationNotFoundException {
 
         PlaceEntity placeEntity = placeRepository.findByNameAndCountryName(placeName, countryName);
         String url = "http://api.weatherapi.com/v1/current.json?key=b293c88263e5412089290227220807&q="
@@ -45,7 +45,7 @@ public class WeatherServiceImpl implements WeatherService {
                         type(placeEntity.getType().getName()).
                         build()).
                 peek(x -> {
-                    if(isFahrenheit != null && isFahrenheit.equals("true")) {
+                    if(isFahrenheit == true) {
                         x.setTemperature((x.getTemperature() * 9/5) + 32);
                     }
                 })

@@ -21,7 +21,7 @@ public class WeatherController {
         System.out.println(weatherRequest.toString());
         String placeName = weatherRequest.getPlaceName();
         String countryName = weatherRequest.getCountryName();
-        String isFahrenheit = weatherRequest.getIsFahrenheit();
+        boolean isFahrenheit = weatherRequest.isFahrenheit();
 
         return weatherService.getWeatherResponse(placeName, countryName, isFahrenheit);
     }
