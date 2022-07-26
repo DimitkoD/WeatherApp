@@ -4,8 +4,6 @@ package com.example.springbootproject.api.controller;
 import com.example.springbootproject.api.model.WeatherRequest;
 import com.example.springbootproject.api.model.WeatherResponse;
 import com.example.springbootproject.domain.service.WeatherService;
-import lombok.NonNull;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
